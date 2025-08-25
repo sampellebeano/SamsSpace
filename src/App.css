@@ -1,3 +1,8 @@
+
+body {
+  font-family: 'Calibri', Arial, sans-serif;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -20,29 +25,21 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
 
 .read-the-docs {
   color: #888;
 }
+
 
 /* Homepage Styles */
 .homepage-container {
@@ -53,6 +50,7 @@
   min-height: 100vh;
   padding: 2vw;
 }
+
 
 .sam-green {
   font-size: clamp(2rem, 8vw, 5rem);
