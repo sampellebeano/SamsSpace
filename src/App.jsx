@@ -14,7 +14,7 @@ function App() {
       </div>
       <div className="button-row">
         <button className="homepage-btn">Search</button>
-        <button className="homepage-btn linkedin-btn" onClick={() => window.open('https://www.linkedin.com/in/samgreen/', '_blank')}>LinkedIn</button>
+        <button className="homepage-btn linkedin-btn" onClick={() => window.open('https://www.linkedin.com/in/samjohngreen/', '_blank')}>LinkedIn</button>
       </div>
     </div>
   );
