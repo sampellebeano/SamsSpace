@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://5amgreen.com",
   "scripts": {
-    "predeploy": "npm run build && node add-nojekyll.js",
+    "predeploy": "npm run build && node add-nojekyll.js && node add-cname.js",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
