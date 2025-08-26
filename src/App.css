@@ -92,7 +92,7 @@
   padding: 0.8em 0;
   font-size: clamp(1rem, 3vw, 1.5rem);
   margin: 0 0.5em;
-  border: none;
+  border: 1px solid #242651;
   border-radius: 8px;
   background: #646cff;
   color: #fff;
