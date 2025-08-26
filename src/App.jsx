@@ -1,16 +1,23 @@
-
 import './App.css'
 
+import { useRef } from 'react';
+
 function App() {
+  const editableRef = useRef(null);
+
   return (
     <div className="homepage-container">
       <h1 className="sam-green">Sam Green</h1>
       <div className="input-box-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="What do you want to know..."
-        />
+        <div
+          ref={editableRef}
+          className="search-input center-editable"
+          contentEditable
+          role="textbox"
+          aria-label="What do you want to know..."
+          spellCheck={false}
+          data-placeholder="What do you want to know..."
+        ></div>
       </div>
       <div className="button-row">
         <button className="homepage-btn">Search</button>
@@ -19,5 +26,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
