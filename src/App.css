@@ -179,3 +179,30 @@
 .linkedin-btn:hover {
   background: #005983;
 }
+
+/* Search Results Styles */
+.search-results {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 800px;
+  text-align: left;
+}
+
+.search-results h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.results-container {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.results-container p {
+  margin: 0;
+  color: #666;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
