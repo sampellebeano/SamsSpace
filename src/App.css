@@ -75,12 +75,22 @@
   padding: 1rem;
   background-color: transparent;
   box-sizing: border-box;
+  transition: all 0.8s ease-in-out;
+}
+
+.homepage-container.search-mode {
+  justify-content: flex-start;
+  padding-top: 2rem;
 }
 
 /* Tablet and larger screens */
 @media (min-width: 768px) {
   .homepage-container {
     padding: 2rem;
+  }
+  
+  .homepage-container.search-mode {
+    padding-top: 3rem;
   }
 }
 
@@ -91,6 +101,12 @@
   margin-top: 0;
   text-align: center;
   line-height: 1.1;
+  transition: all 0.8s ease-in-out;
+}
+
+.sam-green.compact {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  margin-bottom: 1vw;
 }
 
 .input-box-container {
@@ -102,6 +118,12 @@
   color: black;
   text-align: center;
   position: relative;
+  transition: all 0.8s ease-in-out;
+}
+
+.input-box-container.compact {
+  max-width: 500px;
+  margin-bottom: 1.5vw;
 }
 
 /* Tablet and larger screens */
@@ -109,6 +131,10 @@
   .input-box-container {
     width: 90vw;
     margin-bottom: 2vw;
+  }
+  
+  .input-box-container.compact {
+    margin-bottom: 1vw;
   }
 }
 
@@ -182,6 +208,14 @@
   max-width: 320px;
   margin-top: 3vw;
   gap: 0.8rem;
+  transition: all 0.8s ease-in-out;
+}
+
+.button-row.compact {
+  flex-direction: row;
+  max-width: 500px;
+  margin-top: 1.5vw;
+  gap: 1rem;
 }
 
 /* Tablet and larger screens */
@@ -189,6 +223,10 @@
   .button-row {
     margin-top: 2vw;
     gap: 1rem;
+  }
+  
+  .button-row.compact {
+    margin-top: 1vw;
   }
 }
 
@@ -202,9 +240,22 @@
   background: #646cff;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.4s ease-in-out;
   touch-action: manipulation;
   /* Prevents zoom on double-tap */
+}
+
+.button-row.compact .homepage-btn {
+  width: auto;
+  flex: 1;
+  padding: 0.6em 1.5em;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.linkedin-btn.fade-out {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
 }
 
 /* Mobile-specific button adjustments */
@@ -214,6 +265,11 @@
     font-size: 1.2rem;
     min-height: 48px;
     /* Minimum touch target size */
+  }
+  
+  .button-row.compact .homepage-btn {
+    padding: 0.8em 1em;
+    font-size: 1rem;
   }
 }
 
@@ -237,6 +293,9 @@
   text-align: left;
   padding: 0 1rem;
   box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
 }
 
 .search-results h2 {
@@ -259,6 +318,22 @@
   color: #666;
   font-size: clamp(1rem, 3vw, 1.2rem);
   line-height: 1.5;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 /* Mobile-specific search results */
