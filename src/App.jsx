@@ -2,6 +2,7 @@ import './App.css'
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import aiService from './aiService.js';
+import DarkModeToggle from './DarkModeToggle.jsx';
 
 function App() {
   const editableRef = useRef(null);
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <div className={`homepage-container ${showResults ? 'search-mode' : ''}`}>
+      <DarkModeToggle />
       <h1
         className={`sam-green clickable ${showResults ? 'compact' : ''}`}
         onClick={handleHomeClick}

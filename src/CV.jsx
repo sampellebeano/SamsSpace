@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import DarkModeToggle from './DarkModeToggle.jsx';
 
 function CV() {
     const navigate = useNavigate();
 
     return (
         <div className="cv-container">
+            <DarkModeToggle />
             <header className="cv-header">
                 <h1
                     className="cv-title clickable"
