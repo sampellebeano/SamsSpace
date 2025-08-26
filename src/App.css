@@ -52,6 +52,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
+  background-color: transparent;
 }
 
 .sam-green {
@@ -68,6 +69,7 @@
   max-width: 400px;
   min-width: 200px;
   margin-bottom: 2vw;
+  color: rgb(64, 125, 255);
 }
 
 .search-input {
@@ -76,10 +78,7 @@
   /* reduced upper cap */
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   /* more moderate scaling */
-  border-top: 2px solid #3e80f1;
-  border-right: 2px solid transparent;
-  border-bottom: 2px solid transparent;
-  border-left: 2px solid transparent;
+  border: 2px solid transparent;
   border-radius: 8px;
   box-sizing: border-box;
 }
