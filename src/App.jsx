@@ -38,7 +38,7 @@ function App() {
   return (
     <div className={`homepage-container ${showResults ? 'search-mode' : ''}`}>
       <h1 className={`sam-green ${showResults ? 'compact' : ''}`}>Sam Green</h1>
-      
+
       <div className={`input-box-container ${showResults ? 'compact' : ''}`}>
         <div
           ref={editableRef}
@@ -51,13 +51,13 @@ function App() {
           onKeyDown={showResults ? handleNewSearchKeyPress : handleKeyPress}
         ></div>
       </div>
-      
+
       <div className={`button-row ${showResults ? 'compact' : ''}`}>
         <button className="homepage-btn" onClick={showResults ? handleNewSearch : handleSearch}>
           Search
         </button>
-        <button 
-          className={`homepage-btn linkedin-btn ${showResults ? 'fade-out' : ''}`} 
+        <button
+          className={`homepage-btn linkedin-btn ${showResults ? 'fade-out' : ''}`}
           onClick={() => window.open('https://www.linkedin.com/in/samjohngreen/', '_blank')}
         >
           LinkedIn
