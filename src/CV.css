@@ -1,0 +1,38 @@
+.cv-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    /* Creates consistent spacing between all elements */
+    padding: 2rem 1rem;
+}
+
+.cv-title {
+    margin: 0;
+    text-align: center;
+}
+
+.cv-location {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.cv-contact {
+    margin: 0;
+}
+
+/* To spread out the words in "I'm Sam Green." */
+.word-line {
+    margin-right: 0.5rem;
+    /* Add space between words */
+}
+
+.word-line:last-child {
+    margin-right: 0;
+    /* Remove margin from last word */
+}
+
+.cv-section {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}

@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+/* Clickable elements */
+.clickable {
+  cursor: pointer;
+}
+
 /* Tablet and larger screens */
 @media (min-width: 768px) {
   #root {
@@ -352,6 +357,28 @@
   margin-bottom: 0.5rem;
 }
 
+.chat-message.loading {
+  opacity: 0.8;
+}
+
+.typing-indicator {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
 /* Animation keyframes */
 @keyframes fadeInUp {
   from {
@@ -613,16 +640,16 @@
   .bottom-search-container {
     padding: 0.8rem;
   }
-  
+
   .bottom-search-box {
     padding: 0.3rem;
   }
-  
+
   .bottom-search-input {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;
   }
-  
+
   .bottom-search-btn {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;

@@ -22,7 +22,7 @@ function SearchResults() {
 
     return (
         <div className="homepage-container">
-            <h1 className="sam-green" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+            <h1 className="sam-green clickable" onClick={() => navigate('/')}>
                 Sam Green
             </h1>
 

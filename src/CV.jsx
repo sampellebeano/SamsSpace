@@ -7,35 +7,37 @@ function CV() {
     return (
         <div className="cv-container">
             <header className="cv-header">
-                <h1 
-                    className="cv-title"
-                    onClick={() => navigate('/')} 
-                    style={{ cursor: 'pointer' }}
+                <h1
+                    className="cv-title clickable"
+                    onClick={() => navigate('/')}
                 >
                     <span className="word-line">I'm</span>
                     <span className="word-line">Sam</span>
                     <span className="word-line">Green<span className="blue-dot">.</span></span>
                 </h1>
+                <div className="cv-location">
+                    <span>Dubai, United Arab Emirates</span>
+                </div>
                 <div className="cv-contact">
-                    <span>Dublin, Ireland</span>
                     <span>
                         <a href="https://linkedin.com/in/samjohngreen" target="_blank" rel="noopener noreferrer">
                             LinkedIn
                         </a>
                         {" | "}
-                        <a href="tel:+353872998416">+353 87 299 84 16</a>
+                        <a href="tel:+971559661149">+971 55 966 1149</a>
                         {" | "}
                         <a href="mailto:sam.jgreen@outlook.com">sam.jgreen@outlook.com</a>
                     </span>
                 </div>
             </header>
-
             <hr />
 
             <section className="cv-section">
                 <h2>Professional Summary</h2>
                 <p>
-                    Experienced and driven Solution Consultant with nearly six years of proven success in SaaS sales, looking for new opportunities to advance my career in Singapore. I am dedicated to delivering value both as a leader and team player within my team and culturally throughout my organisation, proudly chairing the Ireland Culture Champions team in 2024. I have excelled as a trusted advisor to companies of all sizes and am eager to deliver exceptional outcomes in ServiceNow Singapore.
+                    Experienced and driven Solution Consultant with nearly eight years of proven success in SaaS sales.
+                    I am dedicated to delivering value both as a leader and team player within my team and culturally throughout my organisation.
+                    I have excelled as a trusted advisor to companies of all sizes and am eager to deliver exceptional outcomes.
                 </p>
             </section>
 

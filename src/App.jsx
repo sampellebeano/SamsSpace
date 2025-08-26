@@ -1,39 +1,49 @@
 import './App.css'
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import aiService from './aiService.js';
 
 function App() {
   const editableRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const getAIResponse = (query) => {
-    const responses = [
-      "I'm Sam Green's AI assistant. I can help answer questions about Sam's background, experience, and interests. What would you like to know?",
-      "That's a great question! Sam has extensive experience in various fields. Feel free to ask me anything specific about his work or background.",
-      "I'd be happy to help you learn more about Sam. Is there a particular aspect of his experience you're interested in?",
-      "Sam is passionate about technology and innovation. What specific area would you like to explore?",
-      "Thanks for your interest in Sam's background! I can provide information about his skills, experience, or projects."
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-  };
-
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const query = editableRef.current?.textContent?.trim();
-    if (query) {
+    if (query && !isLoading) {
       const newUserMessage = { type: 'user', content: query };
-      const newAIMessage = { type: 'ai', content: getAIResponse(query) };
-      
+
+      // Add user message immediately
       if (!showResults) {
-        setMessages([newUserMessage, newAIMessage]);
+        setMessages([newUserMessage]);
         setShowResults(true);
       } else {
-        setMessages(prev => [...prev, newUserMessage, newAIMessage]);
+        setMessages(prev => [...prev, newUserMessage]);
       }
-      
+
       // Clear the input
       editableRef.current.textContent = '';
+      setIsLoading(true);
+
+      try {
+        // Get AI response
+        const aiResponse = await aiService.sendMessage(query);
+        const newAIMessage = { type: 'ai', content: aiResponse };
+
+        // Add AI response
+        setMessages(prev => [...prev, newAIMessage]);
+      } catch (error) {
+        console.error('Error getting AI response:', error);
+        const errorMessage = {
+          type: 'ai',
+          content: "I'm sorry, I'm having trouble processing your request right now. Please try again later."
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -54,10 +64,9 @@ function App() {
 
   return (
     <div className={`homepage-container ${showResults ? 'search-mode' : ''}`}>
-      <h1 
-        className={`sam-green ${showResults ? 'compact' : ''}`}
+      <h1
+        className={`sam-green clickable ${showResults ? 'compact' : ''}`}
         onClick={handleHomeClick}
-        style={{ cursor: 'pointer' }}
       >
         <span className="word-line">I'm</span>
         <span className="word-line">Sam</span>
@@ -101,6 +110,11 @@ function App() {
                 <strong>{message.type === 'user' ? 'You:' : 'AI:'}</strong> {message.content}
               </div>
             ))}
+            {isLoading && (
+              <div className="chat-message ai-message loading">
+                <strong>AI:</strong> <span className="typing-indicator">Thinking...</span>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -129,9 +143,9 @@ function App() {
         <div className="footer-content">
           <a href="#" onClick={(e) => { e.preventDefault(); navigate('/cv'); }} className="footer-link">My CV</a>
           {showResults && (
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }} 
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }}
               className="footer-link"
             >
               LinkedIn
