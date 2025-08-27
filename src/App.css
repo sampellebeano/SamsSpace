@@ -271,6 +271,16 @@
   /* Prevents zoom on double-tap */
 }
 
+.search-btn {
+  background: #646cff;
+  border: 1px solid #646cff;
+}
+
+.search-btn:hover {
+  background: #535bf2;
+  border-color: #535bf2;
+}
+
 .button-row.compact .homepage-btn {
   width: auto;
   flex: 1;
@@ -426,7 +436,15 @@
   border-top: 1px solid var(--border-color);
   padding: 1rem 0;
   z-index: 100;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-visible {
+  transform: translateY(0);
+}
+
+.footer-hidden {
+  transform: translateY(100%);
 }
 
 :root[data-theme="dark"] .footer {
@@ -456,6 +474,18 @@
 .footer-link.active {
   color: var(--text-color);
   cursor: default;
+}
+
+/* Mobile adjustments for footer */
+@media (max-width: 480px) {
+  .footer-content {
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .footer-link {
+    font-size: 0.9rem;
+  }
 }
 
 /* CV Page Styles */
@@ -639,7 +669,7 @@
 .bottom-search-btn {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  border: none;
+  border: 1px solid #646cff;
   border-radius: 20px;
   background: #646cff;
   color: #fff;
@@ -650,6 +680,7 @@
 
 .bottom-search-btn:hover {
   background: #535bf2;
+  border-color: #535bf2;
 }
 
 /* Mobile adjustments for bottom search */

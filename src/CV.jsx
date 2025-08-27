@@ -7,7 +7,6 @@ function CV() {
 
     return (
         <div className="cv-container">
-            <DarkModeToggle />
             <header className="cv-header">
                 <h1
                     className="cv-title clickable"
@@ -124,9 +123,17 @@ function CV() {
                 </ul>
             </section>
 
-            <footer className="footer">
+            <footer className="footer footer-visible">
                 <div className="footer-content">
                     <a href="#" onClick={(e) => { e.preventDefault(); }} className="footer-link active">My CV</a>
+                    <DarkModeToggle />
+                    <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }}
+                        className="footer-link"
+                    >
+                        LinkedIn
+                    </a>
                 </div>
             </footer>
         </div>

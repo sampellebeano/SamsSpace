@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import aiService from './aiService.js';
 import DarkModeToggle from './DarkModeToggle.jsx';
@@ -9,9 +9,44 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showFooter, setShowFooter] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
-  const handleSearch = async () => {
+  // Handle scroll to hide/show footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Only hide footer when there are results and page is scrollable
+      if (showResults && documentHeight > windowHeight) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down and past 100px
+          setShowFooter(false);
+        } else if (currentScrollY < lastScrollY) {
+          // Scrolling up
+          setShowFooter(true);
+        }
+      } else {
+        // Always show footer on homepage or short pages
+        setShowFooter(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, showResults]);
+
+  const handleSearch = async (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const query = editableRef.current?.textContent?.trim();
     if (query && !isLoading) {
       const newUserMessage = { type: 'user', content: query };
@@ -51,7 +86,8 @@ function App() {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      handleSearch();
+      e.stopPropagation();
+      handleSearch(e);
     }
   };
 
@@ -65,7 +101,6 @@ function App() {
 
   return (
     <div className={`homepage-container ${showResults ? 'search-mode' : ''}`}>
-      <DarkModeToggle />
       <h1
         className={`sam-green clickable ${showResults ? 'compact' : ''}`}
         onClick={handleHomeClick}
@@ -92,14 +127,12 @@ function App() {
 
       {!showResults && (
         <div className="button-row">
-          <button className="homepage-btn" onClick={handleSearch}>
-            Search
-          </button>
           <button
-            className="homepage-btn linkedin-btn"
-            onClick={() => window.open('https://www.linkedin.com/in/samjohngreen/', '_blank')}
+            className="homepage-btn search-btn"
+            onClick={(e) => handleSearch(e)}
+            type="button"
           >
-            LinkedIn
+            Search
           </button>
         </div>
       )}
@@ -134,25 +167,28 @@ function App() {
               data-placeholder="Ask another question..."
               onKeyDown={handleKeyPress}
             ></div>
-            <button className="bottom-search-btn" onClick={handleSearch}>
+            <button
+              className="bottom-search-btn search-btn"
+              onClick={(e) => handleSearch(e)}
+              type="button"
+            >
               Search
             </button>
           </div>
         </div>
       )}
 
-      <footer className="footer">
+      <footer className={`footer ${showFooter ? 'footer-visible' : 'footer-hidden'}`}>
         <div className="footer-content">
           <a href="#" onClick={(e) => { e.preventDefault(); navigate('/cv'); }} className="footer-link">My CV</a>
-          {showResults && (
-            <a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }}
-              className="footer-link"
-            >
-              LinkedIn
-            </a>
-          )}
+          <DarkModeToggle />
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }}
+            className="footer-link"
+          >
+            LinkedIn
+          </a>
         </div>
       </footer>
     </div>

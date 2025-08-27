@@ -153,7 +153,7 @@ function DarkModeToggle() {
     };
 
     return (
-        <div className="dark-mode-controls">
+        <div className="dark-mode-controls footer-toggle">
             <button
                 className={`dark-mode-toggle ${isDarkMode ? 'dark' : 'light'} ${isAutoMode ? 'auto' : 'manual'}`}
                 onClick={toggleMode}
@@ -161,7 +161,11 @@ function DarkModeToggle() {
                 title={getButtonText()}
             >
                 <span className="toggle-icon">
-                    {isAutoMode ? (isDarkMode ? '🌙' : '☀️') : (isDarkMode ? '🌙' : '☀️')}
+                    {isDarkMode ? (
+                        <div className="time-circle">5pm</div>
+                    ) : (
+                        <div className="time-circle">5am</div>
+                    )}
                 </span>
                 {isAutoMode && <span className="auto-indicator">●</span>}
             </button>

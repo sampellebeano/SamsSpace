@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
+import DarkModeToggle from './DarkModeToggle.jsx';
 
 function SearchResults() {
     const location = useLocation();
@@ -8,7 +9,11 @@ function SearchResults() {
     const searchQuery = new URLSearchParams(location.search).get('q') || '';
     const [newQuery, setNewQuery] = useState(searchQuery);
 
-    const handleSearch = () => {
+    const handleSearch = (e) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         if (newQuery.trim()) {
             navigate(`/search?q=${encodeURIComponent(newQuery.trim())}`);
         }
@@ -16,7 +21,9 @@ function SearchResults() {
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            handleSearch();
+            e.preventDefault();
+            e.stopPropagation();
+            handleSearch(e);
         }
     };
 
@@ -43,11 +50,12 @@ function SearchResults() {
             </div>
 
             <div className="button-row">
-                <button className="homepage-btn" onClick={handleSearch}>
+                <button
+                    className="homepage-btn search-btn"
+                    onClick={(e) => handleSearch(e)}
+                    type="button"
+                >
                     Search
-                </button>
-                <button className="homepage-btn linkedin-btn" onClick={() => window.open('https://www.linkedin.com/in/samjohngreen/', '_blank')}>
-                    LinkedIn
                 </button>
             </div>
 
@@ -60,6 +68,20 @@ function SearchResults() {
                     </div>
                 </div>
             )}
+
+            <footer className="footer footer-visible">
+                <div className="footer-content">
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('/cv'); }} className="footer-link">My CV</a>
+                    <DarkModeToggle />
+                    <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); window.open('https://www.linkedin.com/in/samjohngreen/', '_blank'); }}
+                        className="footer-link"
+                    >
+                        LinkedIn
+                    </a>
+                </div>
+            </footer>
         </div>
     );
 }
