@@ -629,7 +629,15 @@
   border-top: 1px solid var(--border-color);
   padding: 1rem;
   z-index: 99;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: bottom 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.bottom-search-container.footer-hidden {
+  bottom: 0;
+}
+
+.bottom-search-container.footer-visible {
+  bottom: 60px;
 }
 
 :root[data-theme="dark"] .bottom-search-container {
@@ -687,6 +695,14 @@
 @media (max-width: 480px) {
   .bottom-search-container {
     padding: 0.8rem;
+  }
+
+  .bottom-search-container.footer-visible {
+    bottom: 60px;
+  }
+
+  .bottom-search-container.footer-hidden {
+    bottom: 0;
   }
 
   .bottom-search-box {

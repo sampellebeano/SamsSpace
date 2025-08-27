@@ -155,7 +155,7 @@ function App() {
       )}
 
       {showResults && (
-        <div className="bottom-search-container">
+        <div className={`bottom-search-container ${showFooter ? 'footer-visible' : 'footer-hidden'}`}>
           <div className="bottom-search-box">
             <div
               ref={editableRef}
