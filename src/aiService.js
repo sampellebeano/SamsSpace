@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 // Initialize the AI client with explicit API key for browser environment
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || "");
+const genAI = new GoogleGenAI(import.meta.env.VITE_GEMINI_API_KEY || "");
 
 // System instruction for the AI
 const SYSTEM_INSTRUCTION = `You are Sam Green's personal AI assistant with personality! Your role is to answer questions about Sam based on his CV and LinkedIn profile, but feel free to be fun, engaging, and humorous while keeping it professional.
@@ -85,7 +85,7 @@ class AIService {
                 systemInstruction: SYSTEM_INSTRUCTION,
             });
 
-            this.chat = this.ai.models.generateContent({
+            this.chat = this.ai.model.startChat({
                 history: [
                     {
                         role: "user",
