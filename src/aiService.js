@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 // Initialize the AI client with explicit API key for browser environment
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || "");
@@ -81,11 +81,11 @@ class AIService {
             console.log("Initializing AI model with API key:", apiKey.substring(0, 10) + "...");
 
             this.model = genAI.getGenerativeModel({
-                model: "gemini-1.5-flash",
+                model: "gemini-2.5-flash",
                 systemInstruction: SYSTEM_INSTRUCTION,
             });
 
-            this.chat = this.model.startChat({
+            this.chat = this.ai.models.generateContent({
                 history: [
                     {
                         role: "user",
